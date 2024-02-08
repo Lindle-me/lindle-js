@@ -1,0 +1,38 @@
+{
+  "name": "lindle",
+  "version": "1.0.0",
+  "description": "The Nodes JS API for Lindle.",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "type": "commonjs",
+  "scripts": {
+    "build": "tsc",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Lindle-me/lindle-js.git"
+  },
+  "files": [
+    "/dist"
+  ],
+  "keywords": [
+    "elevenlabs",
+    "tts",
+    "texttospeech",
+    "audio"
+  ],
+  "author": "M2K Developments",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/Lindle-me/lindle-js/issues"
+  },
+  "homepage": "https://github.com/Lindle-me/lindle-js#readme",
+  "dependencies": {
+    "axios": "^1.5.0",
+    "typescript": "^5.1.6"
+  },
+  "devDependencies": {
+    "@types/node": "^20.5.3"
+  }
+}
