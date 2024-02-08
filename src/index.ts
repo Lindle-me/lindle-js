@@ -55,6 +55,17 @@ export class Lindle {
             }
         })
     }
+}
 
-
+class User {
+    name: string;
+    email: string;
+    image: string;
+    linkLimit: number;
+    constructor(name: string, email: string, image: string, count: number) {
+        this.name = name;
+        this.email = email;
+        this.image = image;
+        this.linkLimit = count;
+    }
 }
