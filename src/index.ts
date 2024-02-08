@@ -3,12 +3,26 @@ const instance = axios.create();
 const BASE_URL = `https://www.lindle.me`;
 
 
+class User {
+    name: string;
+    email: string;
+    image: string;
+    linkLimit: number;
+    constructor(name: string, email: string, image: string, count: number) {
+        this.name = name;
+        this.email = email;
+        this.image = image;
+        this.linkLimit = count;
+    }
+}
+
+
 export class Lindle {
     apiKey: string; // Declare the apiKey property
     headers: any // Headers for API
 
     /**
-     * Get started with Elevenlabs API
+     * Get started with Lindle API
      * @param {*} apiKey Lindle API key - Get API Key/Token from chrome extension - https://chrome.google.com/webstore/detail/igkkojjaikfmiibedalhgmfnjohlhmaj?authuser=0&hl=en
      */
     constructor(apiKey: string) {
@@ -24,9 +38,11 @@ export class Lindle {
      * Get user's info
      * @returns A json array of {name, voice_id, ...} and more 
      */
-    async getUser(): Promise<any> {
+    async getUser(): Promise<User> {
         const url = `${BASE_URL}/api/user`;
-        return (await instance.get(url, { headers: this.headers })).data;
+        const data = (await instance.get(url, { headers: this.headers })).data;
+        const user = new User(data.name, data.email, data.image, data.count as number)
+        return user
     }
 
     /**
@@ -57,15 +73,3 @@ export class Lindle {
     }
 }
 
-class User {
-    name: string;
-    email: string;
-    image: string;
-    linkLimit: number;
-    constructor(name: string, email: string, image: string, count: number) {
-        this.name = name;
-        this.email = email;
-        this.image = image;
-        this.linkLimit = count;
-    }
-}
