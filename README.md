@@ -4,10 +4,10 @@
 </a>
 
 <a href="https://play.google.com/store/apps/details?id=com.m2kdevelopments.lindle" target="_blank">
-    <img src="./googleplay.png" alt="Buy Me A Coffee" style="height: 60px !important;width: 217px !important;" >
+    <img src="./googleplay.png" alt="Buy Me A Coffee" style="height: 60px !important" >
 </a>
 <a href="https://chrome.google.com/webstore/detail/igkkojjaikfmiibedalhgmfnjohlhmaj" target="_blank">
-    <img src="./chromestore.png" alt="Buy Me A Coffee" style="height: 60px !important;width: 217px !important;" >
+    <img src="./chromestore.png" alt="Buy Me A Coffee" style="height: 60px !important" >
 </a>
 
 
