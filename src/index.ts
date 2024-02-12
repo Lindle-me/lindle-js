@@ -4,15 +4,75 @@ const BASE_URL = `https://www.lindle.me`;
 
 
 class User {
+    id: string;
     name: string;
     email: string;
     image: string;
     linkLimit: number;
-    constructor(name: string, email: string, image: string, count: number) {
+    constructor(id: string, name: string, email: string, image: string, count: number) {
+        this.id = id;
         this.name = name;
         this.email = email;
         this.image = image;
         this.linkLimit = count;
+    }
+}
+
+class Link {
+    id: string;
+    name: string;
+    url: string;
+    folder: string;
+    constructor(id: string, name: string, url: string, folder: string) {
+        this.name = name;
+        this.id = id;
+        this.url = url;
+        this.folder = folder;
+    }
+}
+
+class Folder {
+    id: string;
+    name: string;
+    publicFolder: boolean;
+    journeyLink: string;
+    sharedEmails: Array<string>;
+    links: Array<Link>;
+    constructor(id: string, name: string, publicFolder: boolean, journeyLink: string, sharedEmails: Array<string>, links: Array<Link> = []) {
+        this.id = id;
+        this.name = name;
+        this.publicFolder = publicFolder;
+        this.journeyLink = journeyLink;
+        this.sharedEmails = sharedEmails;
+        this.links = links ? links : []
+    }
+}
+
+class Bookmark {
+    id: string;
+    name: string;
+    folder: string;
+    date: string;
+    url: string;
+    constructor(id: string, name: string, folder: string, date: string, url: string) {
+        this.id = id;
+        this.name = name;
+        this.folder = folder;
+        this.date = date;
+        this.url = url;
+    }
+}
+
+class BookmarkFolder {
+    id: string;
+    name: string;
+    folder: string;
+    date: string;
+    constructor(id: string, name: string, folder: string, date: string) {
+        this.id = id;
+        this.name = name;
+        this.folder = folder;
+        this.date = date;
     }
 }
 
@@ -41,7 +101,7 @@ export class Lindle {
     async getUser(): Promise<User> {
         const url = `${BASE_URL}/api/user`;
         const data = (await instance.get(url, { headers: this.headers })).data;
-        const user = new User(data.name, data.email, data.image, data.count as number)
+        const user = new User(data._id, data.name, data.email, data.image, data.count as number)
         return user
     }
 
@@ -49,27 +109,37 @@ export class Lindle {
      * Get all user's links
      * @returns A json array of {name, voice_id, ...} and more 
      */
-    async getLinks(): Promise<Array<any>> {
+    async getLinks(): Promise<Array<Link>> {
         const url = `${BASE_URL}/api/links`;
-        return (await instance.get(url, { headers: this.headers })).data;
+        const list = (await instance.get(url, { headers: this.headers })).data;
+        return list.map((link: any) => new Link(link._id, link.name, link.url, link.folder));
     }
 
     /**
      * Get all user's folders with or without links inside
      * @returns A json array of {name, voice_id, ...} and more 
      */
-    async getFolders(withLinks: boolean = false): Promise<Array<any>> {
+    async getFolders(withLinks: boolean = false): Promise<Array<Folder>> {
 
         const url = `${BASE_URL}/api/folders`;
         const folders = (await instance.get(url, { headers: this.headers })).data as Array<any>;;
         if (!withLinks) return folders
         const list = await this.getLinks();
-        return folders.map(folder => {
-            return {
-                ...folder,
-                links: list.filter(link => link.folder === folder._id)
-            }
+        return folders.map((f: any) => {
+            const folder = new Folder(f._id,
+                f.name,
+                f.public,
+                `https://lindle.click/${f.codename}`,
+                f.sharedEmails,
+                list.filter(link => link.folder === f._id)
+                    .map((link: any) => new Link(link._id, link.name, link.url, link.folder))
+            );
+            return folder
         })
+    }
+
+    async getSyncedBookmarks() {
+
     }
 }
 

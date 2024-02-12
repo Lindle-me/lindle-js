@@ -3,6 +3,13 @@
 <img src="https://cdn.buymeacoffee.com/buttons/v2/default-yellow.png" alt="Buy Me A Coffee" style="height: 60px !important;width: 217px !important;" >
 </a>
 
+<a href="https://play.google.com/store/apps/details?id=com.m2kdevelopments.lindle" target="_blank">
+    <img src="./googleplay.png" alt="Buy Me A Coffee" style="height: 60px !important;width: 217px !important;" >
+</a>
+<a href="https://chrome.google.com/webstore/detail/igkkojjaikfmiibedalhgmfnjohlhmaj" target="_blank">
+    <img src="./chromestore.png" alt="Buy Me A Coffee" style="height: 60px !important;width: 217px !important;" >
+</a>
+
 
 The Nodes JS <a href="https://api.elevenlabs.io/docs">API</a> for Lindle.
 
@@ -36,5 +43,13 @@ lindle.getLinks().then((links) => {
 ```
 lindle.getFolders().then((folders) => {
     console.log(folders);
+});
+```
+
+## Get Synced Bookmarks
+```
+lindle.getSyncedBookmarks().then((data) => {
+    console.log(data.folders);
+    console.log(data.links);
 });
 ```
