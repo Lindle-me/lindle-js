@@ -1,4 +1,6 @@
 # Lindle NODE JS
+Lindle is your ultimate solution for managing and organizing your web links with ease. This versatile Chrome extension empowers you to save, categorize, and access your online resources like never before.
+
 <a href="https://www.buymeacoffee.com/m2kdevelopments" target="_blank">
 <img src="https://cdn.buymeacoffee.com/buttons/v2/default-yellow.png" alt="Buy Me A Coffee" style="height: 60px !important;width: 217px !important;" />
 </a>
