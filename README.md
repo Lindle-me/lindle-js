@@ -1,17 +1,19 @@
 # Lindle NODE JS
 <a href="https://www.buymeacoffee.com/m2kdevelopments" target="_blank">
-<img src="https://cdn.buymeacoffee.com/buttons/v2/default-yellow.png" alt="Buy Me A Coffee" style="height: 60px !important;width: 217px !important;" >
+<img src="https://cdn.buymeacoffee.com/buttons/v2/default-yellow.png" alt="Buy Me A Coffee" style="height: 60px !important;width: 217px !important;" />
 </a>
 
 <a href="https://play.google.com/store/apps/details?id=com.m2kdevelopments.lindle" target="_blank">
-    <img src="./googleplay.png" alt="Buy Me A Coffee" style="height: 90px !important" >
+    <img src="./googleplay.png" alt="Buy Me A Coffee" style="height: 90px !important" />
 </a>
 <a href="https://chrome.google.com/webstore/detail/igkkojjaikfmiibedalhgmfnjohlhmaj" target="_blank">
-    <img src="./chromestore.png" alt="Buy Me A Coffee" style="height: 90px !important" >
+    <img src="./chromestore.png" alt="Buy Me A Coffee" style="height: 90px !important" />
 </a>
 
 
-The Nodes JS <a href="https://api.elevenlabs.io/docs">API</a> for Lindle.
+## API Documentation
+The Nodes JS <a href="https://lindle.me/api-docs">API</a> for Lindle.
+
 
 ## Installation
 ```

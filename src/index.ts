@@ -96,7 +96,7 @@ export class Lindle {
 
     /**
      * Get user's info
-     * @returns A json array of {name, voice_id, ...} and more 
+     * @returns A class of user
      */
     async getUser(): Promise<User> {
         const url = `${BASE_URL}/api/user`;
@@ -107,7 +107,7 @@ export class Lindle {
 
     /**
      * Get all user's links
-     * @returns A json array of {name, voice_id, ...} and more 
+     * @returns An array of links
      */
     async getLinks(): Promise<Array<Link>> {
         const url = `${BASE_URL}/api/links`;
@@ -117,7 +117,7 @@ export class Lindle {
 
     /**
      * Get all user's folders with or without links inside
-     * @returns A json array of {name, voice_id, ...} and more 
+     * @returns An array of folders
      */
     async getFolders(withLinks: boolean = false): Promise<Array<Folder>> {
 
@@ -138,8 +138,17 @@ export class Lindle {
         })
     }
 
+    /**
+     * Get all user's folders with or without links inside
+     * @returns An array of folders and links for bookmarks
+     */
     async getSyncedBookmarks() {
-
+        const url = `${BASE_URL}/api/links/bookmarks/sync`;
+        const data = (await instance.get(url, { headers: this.headers })).data;
+        const { folders, links } = data;
+        return { folders, links };
     }
+
+
 }
 
