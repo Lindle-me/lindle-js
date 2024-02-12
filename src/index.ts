@@ -76,8 +76,18 @@ class BookmarkFolder {
     }
 }
 
+class APIResult {
+    result: boolean;
+    message: string;
+    constructor(result: boolean, message: string) {
+        this.result = result;
+        this.message = message;
+    }
+}
+
 
 export class Lindle {
+
     apiKey: string; // Declare the apiKey property
     headers: any // Headers for API
 
@@ -92,7 +102,6 @@ export class Lindle {
             'Content-Type': 'application/json'
         }
     }
-
 
     /**
      * Get user's info
@@ -146,9 +155,71 @@ export class Lindle {
         const url = `${BASE_URL}/api/links/bookmarks/sync`;
         const data = (await instance.get(url, { headers: this.headers })).data;
         const { folders, links } = data;
-        return { folders, links };
+        return {
+            folders: folders.map((link: any) => new BookmarkFolder(link.id, link.name, link.folder, link.date)),
+            links: links.map((link: any) => new Bookmark(link.id, link.name, link.folder, link.date, link.url))
+        };
+    }
+
+
+    /**
+     * Create link
+     */
+    async createLink(name: string, url: string, favourite: boolean = false, folderId: string): Promise<APIResult> {
+        const res = await instance.post(`${BASE_URL}/api/links`, { name, url, folder: folderId, favourite }, { headers: this.headers });
+        const data = res.data;
+        return new APIResult(data.result, data.message);
+    }
+
+
+    /**
+     * Create folder
+     */
+    async createFolder(name: string, publicFolder: boolean, sharedEmails: Array<string>): Promise<APIResult> {
+        const res = await instance.post(`${BASE_URL}/api/folders`, { name, public: publicFolder, sharedEmails }, { headers: this.headers });
+        const data = res.data;
+        return new APIResult(data.result, data.message);
+    }
+
+
+    /**
+     * Update link
+     */
+    async updateLink(id: string, name: string, url: string, favourite: boolean, folderId: string): Promise<APIResult> {
+        const res = await instance.post(`${BASE_URL}/api/links/${id}`, { name, url, folder: folderId, favourite }, { headers: this.headers });
+        const data = res.data;
+        return new APIResult(data.result, data.message);
+    }
+
+
+    /**
+     * Rename folder
+     */
+    async updateFolder(id: string, name: string, publicFolder: boolean, sharedEmails: Array<string>): Promise<APIResult> {
+        const res = await instance.patch(`${BASE_URL}/api/folders/${id}`, { name, public: publicFolder, sharedEmails }, { headers: this.headers });
+        const data = res.data;
+        return new APIResult(data.result, data.message);
+    }
+
+
+    /**
+     * Delele link
+     */
+    async deleteLink(id: string): Promise<APIResult> {
+        const res = await instance.delete(`${BASE_URL}/api/links/${id}`, { headers: this.headers });
+        const data = res.data;
+        return new APIResult(data.result, data.message);
+    }
+
+
+    /**
+     * Delele folder
+     */
+    async deleteFolder(id: string): Promise<APIResult> {
+        const res = await instance.delete(`${BASE_URL}/api/folders/${id}`, { headers: this.headers });
+        const data = res.data;
+        return new APIResult(data.result, data.message);
     }
 
 
 }
-
