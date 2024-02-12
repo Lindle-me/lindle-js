@@ -6,10 +6,10 @@ Lindle is your ultimate solution for managing and organizing your web links with
 </a>
 
 <a href="https://play.google.com/store/apps/details?id=com.m2kdevelopments.lindle" target="_blank">
-    <img src="./googleplay.png" alt="Google Play" style="height: 90px !important" />
+    <img src="./googleplay.png" alt="Google Play" style="height: 85px !important" />
 </a>
 <a href="https://chrome.google.com/webstore/detail/igkkojjaikfmiibedalhgmfnjohlhmaj" target="_blank">
-    <img src="./chromestore.png" alt="Chrome Store" style="height: 90px !important" />
+    <img src="./chromestore.png" alt="Chrome Store" style="height: 85px !important" />
 </a>
 
 
