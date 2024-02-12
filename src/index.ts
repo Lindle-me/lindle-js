@@ -132,19 +132,27 @@ export class Lindle {
 
         const url = `${BASE_URL}/api/folders`;
         const folders = (await instance.get(url, { headers: this.headers })).data as Array<any>;;
-        if (!withLinks) return folders
+        if (!withLinks) return folders.map((f: any) =>
+            new Folder(f._id,
+                f.name,
+                f.public,
+                `https://lindle.click/${f?.codename || ""}`,
+                f?.sharedEmails || []
+            )
+        );
         const list = await this.getLinks();
-        return folders.map((f: any) => {
+        const folderList = folders.map((f: any) => {
             const folder = new Folder(f._id,
                 f.name,
                 f.public,
-                `https://lindle.click/${f.codename}`,
+                `https://lindle.click/${f?.codename || ""}`,
                 f.sharedEmails,
                 list.filter(link => link.folder === f._id)
                     .map((link: any) => new Link(link._id, link.name, link.url, link.folder))
             );
             return folder
         })
+        return folderList;
     }
 
     /**
