@@ -1,6 +1,6 @@
 {
   "name": "lindle",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "The Nodes JS API for Lindle. Lindle is your ultimate solution for managing and organizing your web links with ease. This versatile Chrome extension empowers you to save, categorize, and access your online resources like never before",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",

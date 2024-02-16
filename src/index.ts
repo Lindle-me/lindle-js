@@ -23,11 +23,13 @@ class Link {
     name: string;
     url: string;
     folder: string;
-    constructor(id: string, name: string, url: string, folder: string) {
+    favourite: boolean;
+    constructor(id: string, name: string, url: string, folder: string, favourite: boolean) {
         this.name = name;
         this.id = id;
         this.url = url;
         this.folder = folder;
+        this.favourite = favourite;
     }
 }
 
@@ -121,7 +123,7 @@ export class Lindle {
     async getLinks(): Promise<Array<Link>> {
         const url = `${BASE_URL}/api/links`;
         const list = (await instance.get(url, { headers: this.headers })).data;
-        return list.map((link: any) => new Link(link._id, link.name, link.url, link.folder));
+        return list.map((link: any) => new Link(link._id, link.name, link.url, link.folder, link.favourite));
     }
 
     /**
@@ -148,7 +150,7 @@ export class Lindle {
                 `https://lindle.click/${f?.codename || ""}`,
                 f.sharedEmails,
                 list.filter(link => link.folder === f._id)
-                    .map((link: any) => new Link(link._id, link.name, link.url, link.folder))
+                    .map((link: any) => new Link(link._id, link.name, link.url, link.folder, link.favourite))
             );
             return folder
         })

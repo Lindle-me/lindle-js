@@ -14,7 +14,7 @@ Lindle is your ultimate solution for managing and organizing your web links with
 
 
 ## API Documentation
-The Nodes JS <a href="https://lindle.me/api-docs">API</a> for Lindle.
+The <a href="https://lindle.me/api-docs">API Documentation</a> for Lindle.
 
 
 ## Installation
@@ -28,6 +28,9 @@ yarn add lindle
 
 ## Getting Started
 Get your Lindle API key from <a href="https://chrome.google.com/webstore/detail/igkkojjaikfmiibedalhgmfnjohlhmaj">Chrome Extension</a>.
+<br/>
+<img src="./api.png" alt="Chrome Extension" style="height: 400px !important" />
+
 
 ```
 const apiKey = process.env.API_KEY;
