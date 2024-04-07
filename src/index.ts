@@ -3,7 +3,7 @@ const instance = axios.create();
 const BASE_URL = `https://www.lindle.me`;
 
 
-class User {
+export class User {
     id: string;
     name: string;
     email: string;
@@ -18,7 +18,7 @@ class User {
     }
 }
 
-class Link {
+export class Link {
     id: string;
     name: string;
     url: string;
@@ -33,7 +33,7 @@ class Link {
     }
 }
 
-class Folder {
+export class Folder {
     id: string;
     name: string;
     publicFolder: boolean;
@@ -50,7 +50,7 @@ class Folder {
     }
 }
 
-class Bookmark {
+export class Bookmark {
     id: string;
     name: string;
     folder: string;
@@ -65,7 +65,7 @@ class Bookmark {
     }
 }
 
-class BookmarkFolder {
+export class BookmarkFolder {
     id: string;
     name: string;
     folder: string;
@@ -196,7 +196,7 @@ export class Lindle {
      * Update link
      */
     async updateLink(id: string, name: string, url: string, favourite: boolean, folderId: string): Promise<APIResult> {
-        const res = await instance.post(`${BASE_URL}/api/links/${id}`, { name, url, folder: folderId, favourite }, { headers: this.headers });
+        const res = await instance.patch(`${BASE_URL}/api/links/${id}`, { name, url, folder: folderId, favourite }, { headers: this.headers });
         const data = res.data;
         return new APIResult(data.result, data.message);
     }
