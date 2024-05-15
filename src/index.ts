@@ -1,6 +1,6 @@
 import axios from 'axios';
 const instance = axios.create();
-const BASE_URL = `https://www.lindle.me`;
+const BASE_URL = `https://api.lindle.me`;
 
 
 export class User {
